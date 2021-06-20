@@ -1,6 +1,8 @@
 package main
 
-import "github.com/picolloo/todo-cli/cmd"
+import (
+	"github.com/picolloo/todo-cli/cmd"
+)
 
 func main() {
 	cmd.Execute()

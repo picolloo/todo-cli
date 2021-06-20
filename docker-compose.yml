@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  todo-cli-db:
+    image: postgres:latest
+    container_name: todo-cli-db
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: todo-cli
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+  todo-cli:
+    build: .
+    container_name: todo-cli
+    volumes:
+      - .:/go/src

@@ -10,29 +10,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-type TaskStatus int
-
-const (
-	WAITING TaskStatus = iota
-	DOING
-	DONE
-)
-
-type Task struct {
-	description string     `json="description"`
-	status      TaskStatus `json="status"`
-}
-
-var Tasks []*Task
-
-func NewTask(description string, status TaskStatus) *Task {
-
-	return &Task{
-		description,
-		status,
-	}
-}
-
 var cfgFile string
 
 var rootCmd = &cobra.Command{
@@ -54,11 +31,7 @@ func init() {
 	rootCmd.AddCommand(addTaskCmd)
 	cobra.OnInitialize(initConfig)
 
-	//rootCmd.PersistentFlags().StringP("name", "n", "", "tell me your name")
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.todo-cli.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
