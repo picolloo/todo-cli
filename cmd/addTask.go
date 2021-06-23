@@ -11,7 +11,6 @@ import (
 
 var description string
 var addTaskCmd = &cobra.Command{
-
 	Use:   "add-task",
 	Short: "Creates a new task.",
 	Long:  "Creates a new task.",
@@ -21,9 +20,9 @@ var addTaskCmd = &cobra.Command{
 		task := models.NewTask(description, models.WAITING)
 		err := taskService.SaveTask(task)
 		if err != nil {
-			fmt.Printf("%+v", task)
-			fmt.Println(err.Error())
+			panic(err.Error())
 		}
+		fmt.Println("Task successfuly created.")
 	},
 }
 
